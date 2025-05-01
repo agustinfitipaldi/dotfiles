@@ -14,6 +14,7 @@ Plug 'junegunn/fzf.vim'                " Fuzzy finder vim integration
 Plug 'machakann/vim-highlightedyank'   " Highlight yanked text
 Plug 'kaarmu/typst.vim'
 Plug 'SirVer/ultisnips'
+Plug 'sjl/badwolf'
 call plug#end()
 
 " Basic settings
