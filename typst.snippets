@@ -1,0 +1,37 @@
+global !p
+def math():
+	return vim.eval('typst#in_math()') == '1'
+
+def comment():
+	return vim.eval('typst#in_comment()') == '1'
+
+def markup():
+	return vim.eval('typst#in_markup()') == '1'
+
+def code():
+	return vim.eval('typst#in_code()') == '1'
+endglobal
+
+
+snippet mk "Inline math" A
+$$1$ $0
+endsnippet
+
+snippet dm "Display math" A
+$ $1 $ $0
+endsnippet
+
+context "math()"
+snippet mlim "Inline limit" iA
+limits(lim)_($1->$2) $0
+endsnippet
+
+context "math()"
+snippet lim "Display limit" A
+lim_($1->$2) $0
+endsnippet
+
+context "math()"
+snippet // "Fraction" A
+($1)/($2) $0
+endsnippet

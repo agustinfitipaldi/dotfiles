@@ -13,6 +13,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/fzf.vim'                " Fuzzy finder vim integration
 Plug 'machakann/vim-highlightedyank'   " Highlight yanked text
 Plug 'kaarmu/typst.vim'
+Plug 'SirVer/ultisnips'
 call plug#end()
 
 " Basic settings
@@ -103,7 +104,7 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
 
 " Color scheme settings
-colorscheme solarized
+colorscheme badwolf
 set background=dark
 " Add after your colorscheme selection
 " These are examples - adjust colors to your preference
