@@ -14,15 +14,15 @@ endglobal
 
 
 snippet mk "Inline math" A
-$$1$ $0
+$$1$$0
 endsnippet
 
 snippet dm "Display math" A
-$ $1 $ $0
+$ $1 $$0
 endsnippet
 
 context "math()"
-snippet mlim "Inline limit" iA
+snippet llim "Inline limit" iA
 limits(lim)_($1->$2) $0
 endsnippet
 
@@ -32,6 +32,29 @@ lim_($1->$2) $0
 endsnippet
 
 context "math()"
-snippet // "Fraction" A
-($1)/($2) $0
+snippet '\{([A-Za-z])n' "series" wrA
+`!p snip.rv = "{" + match.group(1) + "_n}"`
+endsnippet
+
+context "math()"
+snippet '\{f([a-z])' "function series" wrA
+`!p snip.rv = "{f("+match.group(1)+"_n)}"` $0
+endsnippet
+
+context "math()"
+snippet iff "iff math" A
+<==>
+endsnippet
+
+snippet iff "iff text" A
+$<==>$ $0
+endsnippet
+
+context "math()"
+snippet '[a-z]::' "function" rA
+${1:f}:${2:D}->${3:RR} $0
+endsnippet
+
+snippet nbhd "neighborhood" A
+neighborhood
 endsnippet

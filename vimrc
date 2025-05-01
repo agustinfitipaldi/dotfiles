@@ -42,7 +42,6 @@ syntax on
 set termguicolors     " Enable true color support
 let g:typst_syntax_highlight = 1
 
-
 " Search highlighting
 set hlsearch                 " Highlight search matches
 set incsearch                " Show matches while typing
@@ -112,3 +111,24 @@ set background=dark
 highlight typstMarkup ctermfg=green guifg=#98c379
 highlight typstMath ctermfg=blue guifg=#61afef
 highlight typstFunction ctermfg=yellow guifg=#e5c07b
+
+" Commands
+command RS call UltiSnips#RefreshSnippets()
+command VS source ~/.vimrc 
+
+" Visual line movements for normal mode
+noremap j gj
+noremap k gk
+" Visual line movements for visual mode
+vnoremap j gj
+vnoremap k gk
+" End/beginning of visual line
+noremap $ g$
+noremap 0 g0
+noremap ^ g^
+
+" Wrap at word boundaries rather than at the exact screen edge
+set wrap
+set linebreak
+" Don't break words when wrapping indented lines
+set breakindent
