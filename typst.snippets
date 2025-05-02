@@ -52,9 +52,40 @@ endsnippet
 
 context "math()"
 snippet '[a-z]::' "function" rA
-${1:f}:${2:D}->${3:RR} $0
+${1:f}:${2:D}->${3:RR}$0
 endsnippet
 
 snippet nbhd "neighborhood" A
 neighborhood
+endsnippet
+
+snippet ml "multiline math" A
+$
+$1
+$
+$0
+endsnippet
+
+context "math()"
+snippet tt "text mode" A
+"$1" $0
+endsnippet
+
+context "math()"
+snippet ee "epsilon" iA
+epsilon
+endsnippet
+
+context "math()"
+snippet dd "delta" iA
+delta
+endsnippet
+
+snippet acm "accumulation" A
+accumulation
+endsnippet
+
+context "math()"
+snippet sum "sum" A
+sum_(n=${1:1})^(${2:infinity}) ${3}
 endsnippet
