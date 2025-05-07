@@ -37,8 +37,13 @@ snippet '\{([A-Za-z])n' "series" wrA
 endsnippet
 
 context "math()"
-snippet '\{f([a-z])' "function series" wrA
-`!p snip.rv = "{f("+match.group(1)+"_n)}"` $0
+snippet fxx "function series" wA
+{f(x_n)}
+endsnippet
+
+context "math()"
+snippet '([a-z])nn' "element" wrA
+`!p snip.rv = match.group(1)+"_n"`
 endsnippet
 
 context "math()"
@@ -93,4 +98,15 @@ endsnippet
 context "math()"
 snippet OO "emptyset" A
 emptyset
+endsnippet
+
+
+context "math()"
+snippet \ "without" iA
+ without 
+endsnippet
+
+context "math()"
+snippet -- "arrow" iA
+-->
 endsnippet
