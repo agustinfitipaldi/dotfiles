@@ -127,6 +127,11 @@ noremap $ g$
 noremap 0 g0
 noremap ^ g^
 
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+
+nnoremap <C-a> :TypstWatch<CR>
+
 " Wrap at word boundaries rather than at the exact screen edge
 set wrap
 set linebreak
