@@ -47,6 +47,11 @@ set hlsearch                 " Highlight search matches
 set incsearch                " Show matches while typing
 set ignorecase              " Case insensitive search
 set smartcase               " Case sensitive if uppercase present
+
+" Which Key configuration
+let mapleader = " "          " Space as leader key
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+
 " Press Space + / to clear search highlighting
 nnoremap <leader>/ :nohlsearch<CR>
 
@@ -65,9 +70,6 @@ nnoremap <C-l> <C-w>l
 nnoremap <leader>- :split<CR>
 nnoremap <leader>\ :vsplit<CR>
 
-" Which Key configuration
-let mapleader = " "          " Space as leader key
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 
 " Define which-key mappings
 let g:which_key_map = {}
