@@ -1,3 +1,4 @@
+# context recognition
 global !p
 def math():
 	return vim.eval('typst#in_math()') == '1'
@@ -12,7 +13,7 @@ def code():
 	return vim.eval('typst#in_code()') == '1'
 endglobal
 
-
+# modes
 snippet mk "Inline math" A
 $$1$$0
 endsnippet
@@ -21,9 +22,27 @@ snippet dm "Display math" A
 $ $1 $$0
 endsnippet
 
+snippet ml "multiline math" A
+$
+$1
+$
+$0
+endsnippet
+
+context "math()"
+snippet tt "text mode" iA
+"$1" $0
+endsnippet
+
+# functions, operators, series
 context "math()"
 snippet llim "Inline limit" iA
 limits(lim)_($1->$2) $0
+endsnippet
+
+context "math()"
+snippet sum "sum" A
+sum_(n=${1:1})^(${2:infinity}) ${3}
 endsnippet
 
 context "math()"
@@ -47,6 +66,12 @@ snippet '([a-z])nn' "element" wrA
 endsnippet
 
 context "math()"
+snippet '[a-z]::' "function" rA
+${1:f}:${2:D}->${3:RR}$0
+endsnippet
+
+# symbols
+context "math()"
 snippet iff "iff math" A
 <==>
 endsnippet
@@ -56,50 +81,9 @@ $<==>$ $0
 endsnippet
 
 context "math()"
-snippet '[a-z]::' "function" rA
-${1:f}:${2:D}->${3:RR}$0
+snippet -- "arrow" iA
+-->
 endsnippet
-
-snippet nbhd "neighborhood" A
-neighborhood
-endsnippet
-
-snippet ml "multiline math" A
-$
-$1
-$
-$0
-endsnippet
-
-context "math()"
-snippet tt "text mode" A
-"$1" $0
-endsnippet
-
-context "math()"
-snippet ee "epsilon" iA
-epsilon
-endsnippet
-
-context "math()"
-snippet dd "delta" iA
-delta
-endsnippet
-
-snippet acm "accumulation" A
-accumulation
-endsnippet
-
-context "math()"
-snippet sum "sum" A
-sum_(n=${1:1})^(${2:infinity}) ${3}
-endsnippet
-
-context "math()"
-snippet OO "emptyset" A
-emptyset
-endsnippet
-
 
 context "math()"
 snippet \\ "without" iA
@@ -107,6 +91,36 @@ snippet \\ "without" iA
 endsnippet
 
 context "math()"
-snippet -- "arrow" iA
--->
+snippet OO "emptyset" A
+emptyset
+endsnippet
+
+# text
+snippet nbhd "neighborhood" A
+neighborhood
+endsnippet
+
+snippet acm "accumulation" A
+accumulation
+endsnippet
+
+# greek
+context "math()"
+snippet aa "alpha" iA
+alpha
+endsnippet
+
+context "math()"
+snippet bb "beta" iA
+beta
+endsnippet
+
+context "math()"
+snippet dd "delta" iA
+delta
+endsnippet
+
+context "math()"
+snippet ee "epsilon" iA
+epsilon
 endsnippet
