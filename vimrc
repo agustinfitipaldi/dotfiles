@@ -18,6 +18,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'sjl/badwolf'
 call plug#end()
 
+let g:netrw_browsex_viewer = "firefox"
+
 " Basic settings
 syntax enable                 " Enable syntax highlighting
 set number relativenumber     " Relative line numbers
