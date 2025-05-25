@@ -56,13 +56,33 @@ snippet '\{([A-Za-z])n' "series" wrA
 endsnippet
 
 context "math()"
-snippet fxx "function series" wA
+snippet fxn "function series" wA
 {f(x_n)}
 endsnippet
 
 context "math()"
-snippet '([a-z])nn' "element" wrA
+snippet '([A-Za-z])(NN|nn)' "element" wrA
 `!p snip.rv = match.group(1)+"_n"`
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])kk' "element" wrA
+`!p snip.rv = match.group(1)+"_k"`
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])mm' "element" wrA
+`!p snip.rv = match.group(1)+"_m"`
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])([0-9])\2' "element" wrA
+`!p snip.rv = match.group(1)+"_"+match.group(2)`
+endsnippet
+
+context "math()"
+snippet __ "underscore" iA
+_($1)$0
 endsnippet
 
 context "math()"
@@ -70,6 +90,15 @@ snippet '[a-z]::' "function" rA
 ${1:f}:${2:D}->${3:RR}$0
 endsnippet
 
+context "math()"
+snippet frac "fraction" wA
+($1)/($2)$0
+endsnippet
+
+context "math()"
+snippet >> "series limit" iA
+($1) --> $2
+endsnippet
 
 # symbols
 context "math()"
@@ -124,6 +153,11 @@ endsnippet
 context "math()"
 snippet ee "epsilon" iA
 epsilon
+endsnippet
+
+context "math()"
+snippet th "theta" iA
+theta
 endsnippet
 
 context "math()"
