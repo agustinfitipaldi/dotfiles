@@ -1,6 +1,7 @@
 " Basic settings
 set nocompatible              " Be iMproved, required
 filetype off                  " required
+filetype plugin indent on
 
 " Initialize vim-plug
 call plug#begin('~/.vim/plugged')
@@ -16,6 +17,7 @@ Plug 'kaarmu/typst.vim'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/goyo.vim'
 Plug 'sjl/badwolf'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 let g:netrw_browsex_viewer = "firefox"
@@ -142,3 +144,5 @@ set wrap
 set linebreak
 " Don't break words when wrapping indented lines
 set breakindent
+set display+=lastline " show as much of last line as possible
+set display-=truncate
