@@ -16,7 +16,8 @@ Plug 'machakann/vim-highlightedyank'   " Highlight yanked text
 Plug 'kaarmu/typst.vim'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/goyo.vim'
-Plug 'sjl/badwolf'
+" Plug 'sjl/badwolf'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'rust-lang/rust.vim'
 call plug#end()
 
@@ -111,8 +112,19 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
 
 " Color scheme settings
-colorscheme badwolf
-set background=dark
+colorscheme PaperColor
+
+function! ToggleBackground()
+    if &background == "dark"
+        set background=light
+    else
+        set background=dark
+    endif
+endfunction
+
+nnoremap <F5> :call ToggleBackground()<CR>
+
+set t_Co=256
 " Add after your colorscheme selection
 " These are examples - adjust colors to your preference
 highlight typstMarkup ctermfg=green guifg=#98c379
