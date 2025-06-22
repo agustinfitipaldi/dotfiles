@@ -1,0 +1,47 @@
+# Light theme config
+[window]
+padding = { x = 10, y = 10 }
+decorations = "Full"
+
+[font]
+size = 15.0
+
+[font.normal]
+family = "MartianMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "MartianMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "MartianMono Nerd Font"
+style = "Regular"
+
+[colors]
+# Default colors
+[colors.primary]
+background = '#eff1f5'
+foreground = '#4c4f69'
+
+# Normal colors
+[colors.normal]
+black   = '#5c5f77'
+red     = '#d20f39'
+green   = '#40a02b'
+yellow  = '#df8e1d'
+blue    = '#1e66f5'
+magenta = '#ea76cb'
+cyan    = '#179299'
+white   = '#acb0be'
+
+# Bright colors
+[colors.bright]
+black   = '#6c6f85'
+red     = '#d20f39'
+green   = '#40a02b'
+yellow  = '#df8e1d'
+blue    = '#1e66f5'
+magenta = '#ea76cb'
+cyan    = '#179299'
+white   = '#bcc0cc'

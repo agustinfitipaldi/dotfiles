@@ -1,3 +1,8 @@
+" Fix Alacritty terminal detection
+if $TERM == "alacritty"
+    set term=xterm-256color
+endif
+
 " Basic settings
 set nocompatible              " Be iMproved, required
 filetype off                  " required
@@ -45,7 +50,6 @@ let g:typst_embedded_languages = ['python', 'rust', 'cpp']  " Add languages you 
 " Enable all syntax highlighting features
 syntax enable
 syntax on
-set termguicolors     " Enable true color support
 let g:typst_syntax_highlight = 1
 
 " Search highlighting
@@ -112,8 +116,19 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
 
 " Color scheme settings
-colorscheme PaperColor
+set background=dark        " PaperColor needs this BEFORE loading
+if has('termguicolors')
+    set termguicolors
+endif
 
+try
+    colorscheme PaperColor
+catch
+    echo "PaperColor not found!"
+    colorscheme default
+endtry
+
+" Your toggle function
 function! ToggleBackground()
     if &background == "dark"
         set background=light
@@ -124,7 +139,6 @@ endfunction
 
 nnoremap <F5> :call ToggleBackground()<CR>
 
-set t_Co=256
 " Add after your colorscheme selection
 " These are examples - adjust colors to your preference
 highlight typstMarkup ctermfg=green guifg=#98c379
