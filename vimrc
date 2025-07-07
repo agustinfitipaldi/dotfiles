@@ -116,7 +116,7 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>h :History<CR>
 
 " Color scheme settings
-set background=dark        " PaperColor needs this BEFORE loading
+set background=light        " PaperColor needs this BEFORE loading
 if has('termguicolors')
     set termguicolors
 endif
@@ -137,7 +137,7 @@ function! ToggleBackground()
     endif
 endfunction
 
-nnoremap <F5> :call ToggleBackground()<CR>
+nnoremap <leader>t :call ToggleBackground()<CR>
 
 " Add after your colorscheme selection
 " These are examples - adjust colors to your preference

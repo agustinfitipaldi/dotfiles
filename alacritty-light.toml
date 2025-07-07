@@ -3,6 +3,10 @@
 padding = { x = 10, y = 10 }
 decorations = "Full"
 
+[terminal.shell]
+program = "/bin/bash"
+args = ["-l"]
+
 [font]
 size = 15.0
 

@@ -1,10 +1,23 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
+# Silence Apple's bash deprecation warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
+
+# ============ PLATFORM DETECTION ============
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    IS_MAC=true
+else
+    IS_MAC=false
+fi
 
 # ============ HISTORY ============
 HISTCONTROL=ignoreboth      # Don't save duplicates or lines starting with space
@@ -21,12 +34,21 @@ PS1='\[\033[36m\]\W\[\033[0m\] $ '
 PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'  # Set terminal title to current path
 
 # ============ COLORS ============
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+if [ "$IS_MAC" = true ]; then
+    # macOS uses BSD ls
+    alias ls='ls -G'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+else
+    # Linux with GNU coreutils
+    if [ -x /usr/bin/dircolors ]; then
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+        alias ls='ls --color=auto'
+        alias grep='grep --color=auto'
+        alias fgrep='fgrep --color=auto'
+        alias egrep='egrep --color=auto'
+    fi
 fi
 
 # ============ KEYBINDINGS ============
@@ -45,13 +67,20 @@ alias l='ls -CF'
 alias g='git'
 alias gst='git status'
 
+# Pantry
+alias mp='cd /Users/agustinfitipaldi/dev/truth && vim -O meal.md pantry.md'
+alias m='cd /Users/agustinfitipaldi/dev/truth && vim meal.md'
+alias p='cd /Users/agustinfitipaldi/dev/truth && vim pantry.md'
+alias mc='cd /Users/agustinfitipaldi/dev/truth && vim -o meal.md compost.md'
+
 # System
 alias ZZ='exit'
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Keyboard layouts (your custom stuff)
-alias keyboard-default='sudo cp /etc/keyd/default.conf /etc/keyd/default.conf.active && sudo keyd reload'
-alias keyboard-sun='sudo cp /etc/keyd/sun.conf /etc/keyd/default.conf.active && sudo keyd reload'
+# Platform-specific aliases
+if [ "$IS_MAC" = false ]; then
+    # Linux only
+    alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+fi
 
 # ============ FUNCTIONS ============
 # Make directory and cd into it
@@ -70,12 +99,12 @@ tt() {
     current_config="$config_dir/alacritty.toml"
     dark_config="$config_dir/alacritty-dark.toml"
     light_config="$config_dir/alacritty-light.toml"
-    
+
     # Create symlink if it doesn't exist
     if [ ! -L "$current_config" ]; then
         ln -sf "$dark_config" "$current_config"
     fi
-    
+
     # Toggle between themes
     if [ "$(readlink $current_config)" = "$dark_config" ]; then
         ln -sf "$light_config" "$current_config"
@@ -84,26 +113,38 @@ tt() {
         ln -sf "$dark_config" "$current_config"
         echo "Switched to dark theme"
     fi
-    
+
     # Reload Alacritty config
     touch "$current_config"  # Sometimes needed to trigger reload
 }
 
 # ============ ENVIRONMENT VARIABLES ============
-# Development tools
-export SSH_AUTH_SOCK=~/.1password/agent.sock
+# NVM
 export NVM_DIR="$HOME/.nvm"
-export ANDROID_HOME=$HOME/Android/Sdk
+
+# Platform-specific SSH auth socket
+if [ "$IS_MAC" = true ]; then
+    export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+else
+    export SSH_AUTH_SOCK=~/.1password/agent.sock
+fi
+
+# Development tools (only set if they exist)
+[ -d "$HOME/Android/Sdk" ] && export ANDROID_HOME=$HOME/Android/Sdk
 
 # PATH modifications (consolidated)
 export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH"
-export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools"
+[ -d "/usr/local/go/bin" ] && export PATH="$PATH:/usr/local/go/bin"
+[ -n "$ANDROID_HOME" ] && export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools"
 
 # ============ SOURCE EXTERNAL CONFIGS ============
 # Bash completion
-if ! shopt -oq posix; then
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
+if [ "$IS_MAC" = true ]; then
+    # Homebrew bash completion
+    [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+else
+    # Linux bash completion
+    if ! shopt -oq posix && [ -f /usr/share/bash-completion/bash_completion ]; then
         . /usr/share/bash-completion/bash_completion
     fi
 fi
@@ -116,3 +157,5 @@ fi
 
 # Load additional aliases if they exist
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
+
+. "$HOME/.local/bin/env"
