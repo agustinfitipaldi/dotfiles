@@ -128,6 +128,14 @@ catch
     colorscheme default
 endtry
 
+" Convert - text to - [ ] text
+nnoremap , :s/^- /- [ ] /<CR>:noh<CR>
+
+" Toggle checkbox state (cleaner version)
+" nnoremap <CR> :s/\[\([ x]\)\]/\=submatch(1) == ' ' ? '[x]' : '[ ]'/e<CR>:noh<CR>
+nnoremap <CR> :s/\[\([ x-]\)\]/\=submatch(1) == ' ' ? '[-]' : submatch(1) == '-' ? '[x]' : '[ ]'/e<CR>:noh<CR>
+
+
 " Your toggle function
 function! ToggleBackground()
     if &background == "dark"

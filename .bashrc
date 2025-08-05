@@ -61,18 +61,20 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
 
 # Git
 alias g='git'
 alias gst='git status'
 
 # Pantry
-alias mp='cd /Users/agustinfitipaldi/dev/truth && vim -O meal.md pantry.md'
-alias m='cd /Users/agustinfitipaldi/dev/truth && vim meal.md'
-alias p='cd /Users/agustinfitipaldi/dev/truth && vim pantry.md'
-alias mc='cd /Users/agustinfitipaldi/dev/truth && vim -o meal.md compost.md'
-
+alias mp='vim -O /Users/agustinfitipaldi/dev/truth/meal.md /Users/agustinfitipaldi/dev/truth/pantry.md'
+alias lp='vim -O /Users/agustinfitipaldi/dev/truth/lunchbox.md /Users/agustinfitipaldi/dev/truth/pantry.md'
+alias m='vim /Users/agustinfitipaldi/dev/truth/meal.md'
+alias l='vim /Users/agustinfitipaldi/dev/truth/lunchbox.md'
+alias p='vim /Users/agustinfitipaldi/dev/truth/pantry.md'
+alias mc='vim -o /Users/agustinfitipaldi/dev/truth/meal.md /Users/agustinfitipaldi/dev/truth/compost.md'
+alias ml='vim -O /Users/agustinfitipaldi/dev/truth/meal.md /Users/agustinfitipaldi/dev/truth/lunchbox.md'
+alias jls='ls ~/dev/truth/jars'
 # System
 alias ZZ='exit'
 
@@ -118,6 +120,10 @@ tt() {
     touch "$current_config"  # Sometimes needed to trigger reload
 }
 
+j() {
+    vim "/Users/agustinfitipaldi/dev/truth/jars/${1}-jar.md"
+}
+
 # ============ ENVIRONMENT VARIABLES ============
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -159,3 +165,5 @@ fi
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
 . "$HOME/.local/bin/env"
+
+alias claude="/Users/agustinfitipaldi/.claude/local/claude"
