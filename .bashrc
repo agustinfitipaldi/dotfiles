@@ -78,6 +78,10 @@ alias jls='ls ~/dev/truth/jars'
 # System
 alias ZZ='exit'
 
+# YTDLP
+alias ytdlp='~/dev/ytdlp/download.sh'
+alias unq='xattr -d com.apple.quarantine'
+
 # Platform-specific aliases
 if [ "$IS_MAC" = false ]; then
     # Linux only
