@@ -147,6 +147,8 @@ endfunction
 
 nnoremap <leader>t :call ToggleBackground()<CR>
 
+inoremap <C-e> <Esc>F$lvt$y$i=<C-r>=<C-r>"<CR><Esc>a
+
 " Add after your colorscheme selection
 " These are examples - adjust colors to your preference
 highlight typstMarkup ctermfg=green guifg=#98c379
@@ -180,3 +182,5 @@ set linebreak
 set breakindent
 set display+=lastline " show as much of last line as possible
 set display-=truncate
+
+set timeoutlen=20

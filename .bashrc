@@ -88,6 +88,8 @@ if [ "$IS_MAC" = false ]; then
     alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 fi
 
+alias venv='[ ! -d venv ] && python3 -m venv venv; source venv/bin/activate'
+
 # ============ FUNCTIONS ============
 # Make directory and cd into it
 mkcd() {
